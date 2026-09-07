@@ -532,7 +532,7 @@
   /* ---------- WHATSAPP CHAT WIDGET ---------- */
   .wa-widget{
     position:fixed;right:20px;bottom:90px;z-index:42;
-    width:min(300px, calc(100vw - 40px));
+    width:min(320px, calc(100vw - 32px));
     background:var(--white);border-radius:14px;overflow:hidden;
     box-shadow:0 16px 40px rgba(27,42,77,.28);
   }
@@ -560,11 +560,26 @@
   }
   .wa-widget-btn{
     display:flex;align-items:center;justify-content:center;gap:8px;
-    margin:0 16px 16px;padding:12px;border-radius:999px;
-    background:#25D366;color:var(--white);font-weight:600;font-size:.92rem;
+    margin:0 16px 16px;padding:12px;border-radius:999px;border:none;width:calc(100% - 32px);
+    background:#25D366;color:var(--white);font-weight:600;font-size:.92rem;cursor:pointer;
   }
   .wa-widget-btn:hover{filter:brightness(.95);}
   .wa-widget-btn svg{width:18px;height:18px;}
+
+  /* ---------- WHATSAPP WIDGET FORM (período + hóspedes) ---------- */
+  .wa-widget-form{margin:0 16px 12px;display:flex;flex-direction:column;gap:10px;}
+  .wa-widget-field label{display:block;font-size:.76rem;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:.01em;}
+  .wa-widget-dates{display:flex;align-items:center;gap:6px;}
+  .wa-widget-dates span{color:var(--ink);opacity:.4;font-size:.85rem;}
+  .wa-widget-form input{
+    width:100%;border:1px solid rgba(27,42,77,.2);border-radius:8px;
+    height:42px;padding:0 10px;font-family:inherit;font-size:.85rem;color:var(--ink);background:var(--white);
+    min-width:0;box-sizing:border-box;-webkit-appearance:none;appearance:none;
+  }
+  .wa-widget-dates input{flex:1;}
+  .wa-widget-form input:focus{outline:2px solid var(--teal);outline-offset:1px;}
+  .wa-widget-form input.wa-field-error{border-color:#c0392b;}
+  .wa-widget-error{margin:0 16px 10px;font-size:.78rem;color:#c0392b;display:flex;align-items:center;gap:5px;}
 </style>
 </head>
 <body>
@@ -1054,6 +1069,7 @@
         <ul class="amenity-card-features">
           <li><span class="lang-pt">Projetor 4K</span><span class="lang-en">4K projector</span></li>
           <li><span class="lang-pt">Som surround 5.1</span><span class="lang-en">5.1 surround sound</span></li>
+          <li><span class="lang-pt">Capacidade para 10 pessoas</span><span class="lang-en">Seats up to 10 people</span></li>
         </ul>
       </div>
     </div>
@@ -1076,7 +1092,7 @@
         <h3 class="amenity-card-title"><span class="lang-pt">Lareira</span><span class="lang-en">Fireplace</span></h3>
         <ul class="amenity-card-features">
           <li><span class="lang-pt">Lareira ecológica a álcool</span><span class="lang-en">Eco-friendly alcohol fireplace</span></li>
-          <li><span class="lang-pt">Capacidade para 8 pessoas</span><span class="lang-en">Seats up to 8 people</span></li>
+          <li><span class="lang-pt">Capacidade para 12 pessoas</span><span class="lang-en">Seats up to 12 people</span></li>
         </ul>
       </div>
     </div>
@@ -1261,10 +1277,28 @@
     <span class="lang-pt">Olá 👋🏻, bem vindo a Casa Koray<br>Diárias a partir de R$12.000<br>Mínimo de 4 diárias<br>Limite de 25 pessoas</span>
     <span class="lang-en">Hello 👋🏻, welcome to Casa Koray<br>Nightly rates starting at R$12,000<br>4-night minimum stay<br>Capacity: 25 people</span>
   </p>
-  <a class="wa-widget-btn" href="https://wa.me/5571999859929?text=Ol%C3%A1%2C%20vim%20pelo%20site%2C%20gostaria%20de%20saber%20valores%20e%20disponibilidade%20da%20Casa%20Koray" target="_blank" rel="noopener">
+  <div class="wa-widget-form">
+    <div class="wa-widget-field">
+      <label for="waCheckin"><span class="lang-pt">Período desejado</span><span class="lang-en">Desired dates</span></label>
+      <div class="wa-widget-dates">
+        <input type="date" id="waCheckin" aria-label="Check-in">
+        <span>–</span>
+        <input type="date" id="waCheckout" aria-label="Check-out">
+      </div>
+    </div>
+    <div class="wa-widget-field">
+      <label for="waGuests"><span class="lang-pt">Número de hóspedes</span><span class="lang-en">Number of guests</span></label>
+      <input type="number" id="waGuests" min="1" max="36" inputmode="numeric">
+    </div>
+  </div>
+  <p class="wa-widget-error" id="waFormError" hidden>
+    <span class="lang-pt">Preencha o período e o número de hóspedes para continuar.</span>
+    <span class="lang-en">Please fill in the dates and number of guests to continue.</span>
+  </p>
+  <button type="button" class="wa-widget-btn" onclick="sendWaMessage()">
     <svg viewBox="0 0 720 720" fill="currentColor" aria-hidden="true"><path d="M360,0C161.18,0,0,161.18,0,360c0,65.41,17.45,126.75,47.94,179.61L0,720l187.02-44.21c51.34,28.18,110.28,44.21,172.98,44.21,198.82,0,360-161.18,360-360S558.82,0,360,0ZM360,655.52c-60.17,0-116.13-17.98-162.82-48.87l-110.49,28.14,30.99-105.61c-33.53-47.93-53.2-106.26-53.2-169.19,0-163.21,132.31-295.52,295.52-295.52s295.52,132.31,295.52,295.52-132.31,295.52-295.52,295.52Z"/><path d="M444.35,407.52l87.1,41.06c4,1.88,6.56,5.94,6.2,10.34-.94,11.46-5.54,34.43-26.13,55.02-58.12,58.12-162.49-7.64-166.74-10.18-25.67-13.79-50.06-32.24-73.19-55.36-23.12-23.12-41.58-47.52-55.37-73.19-2.55-4.24-68.31-108.61-10.18-166.74,20.59-20.59,43.56-25.19,55.02-26.13,4.41-.36,8.46,2.2,10.34,6.2l41.07,87.1c1.94,4.12,1.09,9.02-2.13,12.24l-30.61,30.61c-6.62,6.62-8.56,16.93-4,25.11,11.17,20.03,26.19,39.32,43.59,57.07,17.75,17.4,37.04,32.43,57.07,43.59,8.18,4.56,18.48,2.62,25.11-4l30.61-30.61c3.22-3.22,8.12-4.08,12.24-2.13Z"/></svg>
     <span><span class="lang-pt">Conversar no WhatsApp</span><span class="lang-en">Chat on WhatsApp</span></span>
-  </a>
+  </button>
 </div>
 
 <!-- WHATSAPP FLOAT -->
@@ -1345,6 +1379,42 @@
     var w = document.getElementById('waWidget');
     if(open === undefined) open = w.hidden;
     w.hidden = !open;
+  }
+
+  function formatDateBR(isoStr){
+    var parts = isoStr.split('-'); // yyyy-mm-dd
+    return parts[2] + '/' + parts[1] + '/' + parts[0];
+  }
+
+  // checkout não pode ser antes do checkin
+  document.getElementById('waCheckin').addEventListener('change', function(){
+    document.getElementById('waCheckout').min = this.value;
+  });
+
+  function sendWaMessage(){
+    var checkinEl = document.getElementById('waCheckin');
+    var checkoutEl = document.getElementById('waCheckout');
+    var guestsEl = document.getElementById('waGuests');
+    var errorEl = document.getElementById('waFormError');
+    var checkin = checkinEl.value;
+    var checkout = checkoutEl.value;
+    var guests = guestsEl.value;
+
+    var missing = !checkin || !checkout || !guests;
+    checkinEl.classList.toggle('wa-field-error', !checkin);
+    checkoutEl.classList.toggle('wa-field-error', !checkout);
+    guestsEl.classList.toggle('wa-field-error', !guests);
+    errorEl.hidden = !missing;
+    if(missing) return;
+
+    var isEn = document.body.classList.contains('is-en');
+    var checkinFmt = formatDateBR(checkin);
+    var checkoutFmt = formatDateBR(checkout);
+    var text = isEn
+      ? 'Hello, I came from the website and would like to check availability and rates for Casa Koray.\nDates: ' + checkinFmt + ' to ' + checkoutFmt + '\nGuests: ' + guests
+      : 'Olá, vim pelo site e gostaria de saber valores e disponibilidade da Casa Koray.\nPeríodo: ' + checkinFmt + ' a ' + checkoutFmt + '\nHóspedes: ' + guests;
+
+    window.open('https://wa.me/5571999859929?text=' + encodeURIComponent(text), '_blank', 'noopener');
   }
 
   // ---------- PREVIEW CAROUSEL (tela inicial) ----------
