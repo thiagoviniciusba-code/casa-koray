@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="color-scheme" content="light">
 <title>Casa Koray — Praia do Forte, Bahia</title>
-<meta name="description" content="Casa Koray — casa de temporada frente-mar em Praia do Forte, Bahia. Piscina de borda infinita, dez suítes, cinema e hidromassagem.">
+<meta name="description" content="Casa de temporada frente-mar em Praia do Forte, Bahia.">
 <link rel="canonical" href="https://casakoray.com.br/">
 
 <!-- FAVICON — monograma "CK", sem dependência de arquivo externo -->
@@ -16,7 +16,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Casa Koray">
 <meta property="og:title" content="Casa Koray — Praia do Forte, Bahia">
-<meta property="og:description" content="Casa de temporada frente-mar em Praia do Forte, Bahia. Piscina de borda infinita, dez suítes, cinema e hidromassagem.">
+<meta property="og:description" content="Casa de temporada frente-mar em Praia do Forte, Bahia.">
 <meta property="og:url" content="https://casakoray.com.br/">
 <meta property="og:image" content="https://casakoray.com.br/assets/img/IMG_7430.jpeg">
 <meta property="og:image:width" content="1200">
@@ -26,7 +26,7 @@
 <meta property="og:locale:alternate" content="en_US">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Casa Koray — Praia do Forte, Bahia">
-<meta name="twitter:description" content="Casa de temporada frente-mar em Praia do Forte, Bahia. Piscina de borda infinita, dez suítes, cinema e hidromassagem.">
+<meta name="twitter:description" content="Casa de temporada frente-mar em Praia do Forte, Bahia.">
 <meta name="twitter:image" content="https://casakoray.com.br/assets/img/IMG_7430.jpeg">
 
 <!-- DADOS ESTRUTURADOS (Google) -->
@@ -569,14 +569,14 @@
   /* ---------- WHATSAPP WIDGET FORM (período + hóspedes) ---------- */
   .wa-widget-form{margin:0 16px 12px;display:flex;flex-direction:column;gap:10px;}
   .wa-widget-field label{display:block;font-size:.76rem;font-weight:700;color:var(--ink);margin-bottom:4px;letter-spacing:.01em;}
-  .wa-widget-dates{display:flex;align-items:center;gap:6px;}
-  .wa-widget-dates span{color:var(--ink);opacity:.4;font-size:.85rem;}
+  .wa-widget-dates{display:flex;align-items:flex-end;gap:6px;}
+  .wa-widget-dates .wa-widget-field{flex:1;min-width:0;}
+  .wa-widget-dash{height:42px;display:flex;align-items:center;color:var(--ink);opacity:.4;font-size:.85rem;}
   .wa-widget-form input{
     width:100%;border:1px solid rgba(27,42,77,.2);border-radius:8px;
     height:42px;padding:0 10px;font-family:inherit;font-size:.85rem;color:var(--ink);background:var(--white);
     min-width:0;box-sizing:border-box;-webkit-appearance:none;appearance:none;
   }
-  .wa-widget-dates input{flex:1;}
   .wa-widget-form input:focus{outline:2px solid var(--teal);outline-offset:1px;}
   .wa-widget-form input.wa-field-error{border-color:#c0392b;}
   .wa-widget-error{margin:0 16px 10px;font-size:.78rem;color:#c0392b;display:flex;align-items:center;gap:5px;}
@@ -1274,16 +1274,19 @@
     </button>
   </div>
   <p class="wa-bubble">
-    <span class="lang-pt">Olá 👋🏻, bem vindo a Casa Koray<br>Diárias a partir de R$12.000<br>Mínimo de 4 diárias<br>Limite de 25 pessoas</span>
-    <span class="lang-en">Hello 👋🏻, welcome to Casa Koray<br>Nightly rates starting at R$12,000<br>4-night minimum stay<br>Capacity: 25 people</span>
+    <span class="lang-pt">Olá 👋🏻, bem vindo a Casa Koray<br>Diárias a partir de R$13.000<br>Mínimo de 4 diárias<br>Limite de 25 pessoas</span>
+    <span class="lang-en">Hello 👋🏻, welcome to Casa Koray<br>Nightly rates starting at R$13,000<br>4-night minimum stay<br>Capacity: 25 people</span>
   </p>
   <div class="wa-widget-form">
-    <div class="wa-widget-field">
-      <label for="waCheckin"><span class="lang-pt">Período desejado</span><span class="lang-en">Desired dates</span></label>
-      <div class="wa-widget-dates">
-        <input type="date" id="waCheckin" aria-label="Check-in">
-        <span>–</span>
-        <input type="date" id="waCheckout" aria-label="Check-out">
+    <div class="wa-widget-dates">
+      <div class="wa-widget-field">
+        <label for="waCheckin"><span class="lang-pt">Data de entrada</span><span class="lang-en">Check-in date</span></label>
+        <input type="date" id="waCheckin">
+      </div>
+      <span class="wa-widget-dash">–</span>
+      <div class="wa-widget-field">
+        <label for="waCheckout"><span class="lang-pt">Data de saída</span><span class="lang-en">Check-out date</span></label>
+        <input type="date" id="waCheckout">
       </div>
     </div>
     <div class="wa-widget-field">
