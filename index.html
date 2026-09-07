@@ -48,7 +48,7 @@
     "addressLocality": "Mata de São João",
     "addressRegion": "BA",
     "addressCountry": "BR",
-    "streetAddress": "Condomínio Porto das Baleias, Praia do Forte"
+    "streetAddress": "Praia do Forte"
   },
   "geo": {
     "@type": "GeoCoordinates",
@@ -253,7 +253,7 @@
     max-width:1080px;margin:0 auto;
     display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
   }
-  .about-figure{border-radius:2px;overflow:hidden;}
+  .about-figure{border-radius:2px;overflow:hidden;aspect-ratio:4/3;}
   .about-figure img{width:100%;height:100%;object-fit:cover;}
   .about-eyebrow{font-family:var(--serif);font-style:italic;color:var(--teal);font-size:1.05rem;margin:0 0 6px;}
   .about-title{
@@ -310,6 +310,7 @@
   .room-card-view.sea{background:rgba(47,122,114,.14);color:var(--teal);}
   .room-card-view.inner{background:rgba(156,107,62,.16);color:var(--wood-dark);}
   .room-card-cap{display:flex;align-items:center;gap:6px;font-size:.85rem;opacity:.85;margin-bottom:7px;}
+  .room-card-floor{font-size:.76rem;opacity:.6;margin:0 0 7px;}
   .room-card-cap svg{width:15px;height:15px;color:var(--wood);flex-shrink:0;}
   .room-card-beds{font-size:.85rem;line-height:1.4;margin:0 0 10px;opacity:.85;}
   .room-card-amenities{display:flex;flex-wrap:wrap;gap:6px;}
@@ -497,6 +498,7 @@
     display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
     padding:26px 16px;border-radius:2px;font-weight:600;font-size:.98rem;
     color:var(--white);transition:filter .2s ease,transform .2s ease;
+    border:none;width:100%;font-family:inherit;
   }
   .book-btn:hover{filter:brightness(.92);transform:translateY(-1px);}
   .book-btn svg{width:26px;height:26px;}
@@ -627,8 +629,8 @@
   <div class="hero-content">
     <h1 class="hero-mark">Casa Koray</h1>
     <p class="hero-tagline">
-      <span class="lang-pt">Frente-mar em Praia do Forte.</span>
-      <span class="lang-en">Oceanfront in Praia do Forte.</span>
+      <span class="lang-pt">Paraíso em Praia do Forte.</span>
+      <span class="lang-en">Paradise in Praia do Forte.</span>
     </p>
   </div>
   <div class="scroll-cue" aria-hidden="true">
@@ -643,10 +645,10 @@
   <h2 class="section-title"><span class="lang-pt">Reservar</span><span class="lang-en">Book your stay</span></h2>
   <p class="booking-sub"><span class="lang-pt">Escolha a forma que preferir.</span><span class="lang-en">Choose the option you prefer.</span></p>
   <div class="booking-buttons">
-    <a class="book-btn whatsapp" href="https://wa.me/5571999859929?text=Ol%C3%A1!%20Gostaria%20de%20saber%20a%20disponibilidade%20e%20valores%20da%20Casa%20Koray." target="_blank" rel="noopener">
+    <button class="book-btn whatsapp" onclick="toggleWaWidget()">
       <svg viewBox="0 0 720 720" fill="currentColor" aria-hidden="true"><path d="M360,0C161.18,0,0,161.18,0,360c0,65.41,17.45,126.75,47.94,179.61L0,720l187.02-44.21c51.34,28.18,110.28,44.21,172.98,44.21,198.82,0,360-161.18,360-360S558.82,0,360,0ZM360,655.52c-60.17,0-116.13-17.98-162.82-48.87l-110.49,28.14,30.99-105.61c-33.53-47.93-53.2-106.26-53.2-169.19,0-163.21,132.31-295.52,295.52-295.52s295.52,132.31,295.52,295.52-132.31,295.52-295.52,295.52Z"/><path d="M444.35,407.52l87.1,41.06c4,1.88,6.56,5.94,6.2,10.34-.94,11.46-5.54,34.43-26.13,55.02-58.12,58.12-162.49-7.64-166.74-10.18-25.67-13.79-50.06-32.24-73.19-55.36-23.12-23.12-41.58-47.52-55.37-73.19-2.55-4.24-68.31-108.61-10.18-166.74,20.59-20.59,43.56-25.19,55.02-26.13,4.41-.36,8.46,2.2,10.34,6.2l41.07,87.1c1.94,4.12,1.09,9.02-2.13,12.24l-30.61,30.61c-6.62,6.62-8.56,16.93-4,25.11,11.17,20.03,26.19,39.32,43.59,57.07,17.75,17.4,37.04,32.43,57.07,43.59,8.18,4.56,18.48,2.62,25.11-4l30.61-30.61c3.22-3.22,8.12-4.08,12.24-2.13Z"/></svg>
       <span><span class="lang-pt">Reservar pelo WhatsApp</span><span class="lang-en">Book on WhatsApp</span></span>
-    </a>
+    </button>
     <a class="book-btn airbnb" href="https://www.airbnb.com.br/rooms/1020068290254033672" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5L2.5 10h3V21h5v-6h3v6h5V10h3L12 2.5z"/></svg>
       <span><span class="lang-pt">Reservar pelo Airbnb</span><span class="lang-en">Book on Airbnb</span></span>
@@ -665,15 +667,15 @@
     </figure>
     <div class="about-text">
       <p class="about-eyebrow">
-        <span class="lang-pt">Porto das Baleias</span><span class="lang-en">Porto das Baleias</span>
+        <span class="lang-pt">Um refúgio de frente para o mar</span><span class="lang-en">A retreat facing the ocean</span>
       </p>
       <h2 class="about-title">
-        <span class="lang-pt">Um refúgio de frente para o Tivoli</span>
-        <span class="lang-en">A retreat facing Tivoli beach</span>
+        <span class="lang-pt">o Tivoli</span>
+        <span class="lang-en">Tivoli Beach</span>
       </h2>
       <p>
-        <span class="lang-pt">A Casa Koray fica no condomínio Porto das Baleias, de frente para a praia do Tivoli, em Praia do Forte. São 1.400 m² entre piscinas de borda infinita, hidromassagem aquecida, cinema particular e dez suítes — cinco delas voltadas para o mar. Um refúgio pensado para grupos grandes, para dias longos ao sol e noites tranquilas ouvindo o mar.</span>
-        <span class="lang-en">Casa Koray sits inside the Porto das Baleias community, facing Tivoli beach in Praia do Forte. Across 1,400 sqm you'll find infinity pools, a heated hot tub, a private cinema and ten suites — five of them ocean-facing. A retreat built for large groups, made for long days in the sun and quiet nights by the sea.</span>
+        <span class="lang-pt">A Casa Koray fica de frente para a praia do Tivoli, em Praia do Forte. São 1.400 m² entre piscinas de borda infinita, hidromassagem aquecida, cinema particular e dez suítes — cinco delas voltadas para o mar. Um refúgio pensado para grupos grandes, para dias longos ao sol e noites tranquilas ouvindo o mar.</span>
+        <span class="lang-en">Casa Koray sits facing Tivoli beach in Praia do Forte. Across 1,400 sqm you'll find infinity pools, a heated hot tub, a private cinema and ten suites — five of them ocean-facing. A retreat built for large groups, made for long days in the sun and quiet nights by the sea.</span>
       </p>
       <div class="facts">
         <div class="fact">
@@ -790,8 +792,8 @@
     </div>
     <div class="location-foot">
       <p class="location-address">
-        <span class="lang-pt">Condomínio Porto das Baleias · Praia do Forte, Bahia</span>
-        <span class="lang-en">Porto das Baleias · Praia do Forte, Bahia</span>
+        <span class="lang-pt">Praia do Forte, Bahia</span>
+        <span class="lang-en">Praia do Forte, Bahia</span>
       </p>
       <a class="map-link" href="https://maps.app.goo.gl/42TcQjgCMTYgv7oUA?g_st=ic" target="_blank" rel="noopener">
         <span class="lang-pt">Abrir no Google Maps</span><span class="lang-en">Open in Google Maps</span>
@@ -873,11 +875,13 @@
         </div>
         <span class="room-card-view sea"><span class="lang-pt">Frente-mar</span><span class="lang-en">Ocean-front</span></span>
       </div>
+      <p class="room-card-floor"><span class="lang-pt">Andar superior</span><span class="lang-en">Upper floor</span></p>
       <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">2 hóspedes</span><span class="lang-en">2 guests</span></span></div>
-      <p class="room-card-beds"><span class="lang-pt">1 cama king</span><span class="lang-en">1 king bed</span></p>
+      <p class="room-card-beds"><span class="lang-pt">1 cama de casal</span><span class="lang-en">1 double bed</span></p>
       <div class="room-card-amenities">
         <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="10" x2="20" y2="10"/></svg><span class="lang-pt">Frigobar</span><span class="lang-en">Mini fridge</span></span>
         <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c3-6 6-9 8-14 2 5 5 8 8 14"/></svg><span class="lang-pt">Varanda</span><span class="lang-en">Balcony</span></span>
+        <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 17v3"/></svg><span class="lang-pt">TV</span><span class="lang-en">TV</span></span>
       </div>
     </div>
 
@@ -891,11 +895,13 @@
         </div>
         <span class="room-card-view sea"><span class="lang-pt">Frente-mar</span><span class="lang-en">Ocean-front</span></span>
       </div>
-      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">3 hóspedes</span><span class="lang-en">3 guests</span></span></div>
-      <p class="room-card-beds"><span class="lang-pt">1 cama queen + 1 sofá-cama de casal</span><span class="lang-en">1 queen bed + 1 double sofa bed</span></p>
+      <p class="room-card-floor"><span class="lang-pt">Andar superior</span><span class="lang-en">Upper floor</span></p>
+      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">4 hóspedes</span><span class="lang-en">4 guests</span></span></div>
+      <p class="room-card-beds"><span class="lang-pt">1 cama de casal + 1 sofá-cama</span><span class="lang-en">1 double bed + 1 sofa bed</span></p>
       <div class="room-card-amenities">
         <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="10" x2="20" y2="10"/></svg><span class="lang-pt">Frigobar</span><span class="lang-en">Mini fridge</span></span>
         <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c3-6 6-9 8-14 2 5 5 8 8 14"/></svg><span class="lang-pt">Varanda</span><span class="lang-en">Balcony</span></span>
+        <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 17v3"/></svg><span class="lang-pt">TV</span><span class="lang-en">TV</span></span>
       </div>
     </div>
 
@@ -909,11 +915,13 @@
         </div>
         <span class="room-card-view sea"><span class="lang-pt">Frente-mar</span><span class="lang-en">Ocean-front</span></span>
       </div>
-      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">2 hóspedes</span><span class="lang-en">2 guests</span></span></div>
-      <p class="room-card-beds"><span class="lang-pt">1 cama king</span><span class="lang-en">1 king bed</span></p>
+      <p class="room-card-floor"><span class="lang-pt">Andar superior</span><span class="lang-en">Upper floor</span></p>
+      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">4 hóspedes</span><span class="lang-en">4 guests</span></span></div>
+      <p class="room-card-beds"><span class="lang-pt">1 cama de casal + 1 sofá-cama</span><span class="lang-en">1 double bed + 1 sofa bed</span></p>
       <div class="room-card-amenities">
         <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="10" x2="20" y2="10"/></svg><span class="lang-pt">Frigobar</span><span class="lang-en">Mini fridge</span></span>
         <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c3-6 6-9 8-14 2 5 5 8 8 14"/></svg><span class="lang-pt">Varanda</span><span class="lang-en">Balcony</span></span>
+        <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 17v3"/></svg><span class="lang-pt">TV</span><span class="lang-en">TV</span></span>
       </div>
     </div>
 
@@ -927,11 +935,12 @@
         </div>
         <span class="room-card-view sea"><span class="lang-pt">Frente-mar</span><span class="lang-en">Ocean-front</span></span>
       </div>
-      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">3 hóspedes</span><span class="lang-en">3 guests</span></span></div>
-      <p class="room-card-beds"><span class="lang-pt">1 cama queen + 1 cama de solteiro</span><span class="lang-en">1 queen bed + 1 single bed</span></p>
+      <p class="room-card-floor"><span class="lang-pt">Andar térreo</span><span class="lang-en">Ground floor</span></p>
+      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">2 hóspedes</span><span class="lang-en">2 guests</span></span></div>
+      <p class="room-card-beds"><span class="lang-pt">1 cama de casal</span><span class="lang-en">1 double bed</span></p>
       <div class="room-card-amenities">
         <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="10" x2="20" y2="10"/></svg><span class="lang-pt">Frigobar</span><span class="lang-en">Mini fridge</span></span>
-        <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c3-6 6-9 8-14 2 5 5 8 8 14"/></svg><span class="lang-pt">Varanda</span><span class="lang-en">Balcony</span></span>
+        <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 17v3"/></svg><span class="lang-pt">TV</span><span class="lang-en">TV</span></span>
       </div>
     </div>
 
@@ -945,11 +954,12 @@
         </div>
         <span class="room-card-view sea"><span class="lang-pt">Frente-mar</span><span class="lang-en">Ocean-front</span></span>
       </div>
-      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">2 hóspedes</span><span class="lang-en">2 guests</span></span></div>
-      <p class="room-card-beds"><span class="lang-pt">1 cama king</span><span class="lang-en">1 king bed</span></p>
+      <p class="room-card-floor"><span class="lang-pt">Andar térreo</span><span class="lang-en">Ground floor</span></p>
+      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">4 hóspedes</span><span class="lang-en">4 guests</span></span></div>
+      <p class="room-card-beds"><span class="lang-pt">2 camas de casal</span><span class="lang-en">2 double beds</span></p>
       <div class="room-card-amenities">
         <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="10" x2="20" y2="10"/></svg><span class="lang-pt">Frigobar</span><span class="lang-en">Mini fridge</span></span>
-        <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20c3-6 6-9 8-14 2 5 5 8 8 14"/></svg><span class="lang-pt">Varanda</span><span class="lang-en">Balcony</span></span>
+        <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="12" rx="1.5"/><path d="M8 20h8M12 17v3"/></svg><span class="lang-pt">TV</span><span class="lang-en">TV</span></span>
       </div>
     </div>
 
@@ -963,11 +973,9 @@
         </div>
         <span class="room-card-view inner"><span class="lang-pt">Vista interna</span><span class="lang-en">Garden view</span></span>
       </div>
-      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">2 hóspedes</span><span class="lang-en">2 guests</span></span></div>
-      <p class="room-card-beds"><span class="lang-pt">1 cama king</span><span class="lang-en">1 king bed</span></p>
-      <div class="room-card-amenities">
-        <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="10" x2="20" y2="10"/></svg><span class="lang-pt">Frigobar</span><span class="lang-en">Mini fridge</span></span>
-      </div>
+      <p class="room-card-floor"><span class="lang-pt">Andar superior</span><span class="lang-en">Upper floor</span></p>
+      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">4 hóspedes</span><span class="lang-en">4 guests</span></span></div>
+      <p class="room-card-beds"><span class="lang-pt">2 camas de casal</span><span class="lang-en">2 double beds</span></p>
     </div>
 
     <div class="room-card">
@@ -980,11 +988,9 @@
         </div>
         <span class="room-card-view inner"><span class="lang-pt">Vista interna</span><span class="lang-en">Garden view</span></span>
       </div>
-      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">3 hóspedes</span><span class="lang-en">3 guests</span></span></div>
-      <p class="room-card-beds"><span class="lang-pt">2 camas queen</span><span class="lang-en">2 queen beds</span></p>
-      <div class="room-card-amenities">
-        <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="10" x2="20" y2="10"/></svg><span class="lang-pt">Frigobar</span><span class="lang-en">Mini fridge</span></span>
-      </div>
+      <p class="room-card-floor"><span class="lang-pt">Andar superior</span><span class="lang-en">Upper floor</span></p>
+      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">4 hóspedes</span><span class="lang-en">4 guests</span></span></div>
+      <p class="room-card-beds"><span class="lang-pt">1 cama de casal + 1 bicama de solteiro</span><span class="lang-en">1 double bed + 1 single trundle bed</span></p>
     </div>
 
     <div class="room-card">
@@ -997,11 +1003,9 @@
         </div>
         <span class="room-card-view inner"><span class="lang-pt">Vista interna</span><span class="lang-en">Garden view</span></span>
       </div>
-      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">3 hóspedes</span><span class="lang-en">3 guests</span></span></div>
-      <p class="room-card-beds"><span class="lang-pt">1 cama queen + 1 cama de solteiro</span><span class="lang-en">1 queen bed + 1 single bed</span></p>
-      <div class="room-card-amenities">
-        <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="10" x2="20" y2="10"/></svg><span class="lang-pt">Frigobar</span><span class="lang-en">Mini fridge</span></span>
-      </div>
+      <p class="room-card-floor"><span class="lang-pt">Andar térreo</span><span class="lang-en">Ground floor</span></p>
+      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">4 hóspedes</span><span class="lang-en">4 guests</span></span></div>
+      <p class="room-card-beds"><span class="lang-pt">2 camas de casal</span><span class="lang-en">2 double beds</span></p>
     </div>
 
     <div class="room-card">
@@ -1014,11 +1018,9 @@
         </div>
         <span class="room-card-view inner"><span class="lang-pt">Vista interna</span><span class="lang-en">Garden view</span></span>
       </div>
-      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">3 hóspedes</span><span class="lang-en">3 guests</span></span></div>
-      <p class="room-card-beds"><span class="lang-pt">1 cama king</span><span class="lang-en">1 king bed</span></p>
-      <div class="room-card-amenities">
-        <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="10" x2="20" y2="10"/></svg><span class="lang-pt">Frigobar</span><span class="lang-en">Mini fridge</span></span>
-      </div>
+      <p class="room-card-floor"><span class="lang-pt">Andar térreo</span><span class="lang-en">Ground floor</span></p>
+      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">4 hóspedes</span><span class="lang-en">4 guests</span></span></div>
+      <p class="room-card-beds"><span class="lang-pt">1 cama de casal + 1 bicama de solteiro</span><span class="lang-en">1 double bed + 1 single trundle bed</span></p>
     </div>
 
     <div class="room-card">
@@ -1031,11 +1033,9 @@
         </div>
         <span class="room-card-view inner"><span class="lang-pt">Vista interna</span><span class="lang-en">Garden view</span></span>
       </div>
-      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">2 hóspedes</span><span class="lang-en">2 guests</span></span></div>
-      <p class="room-card-beds"><span class="lang-pt">1 cama queen</span><span class="lang-en">1 queen bed</span></p>
-      <div class="room-card-amenities">
-        <span class="amenity"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="1.5"/><line x1="4" y1="10" x2="20" y2="10"/></svg><span class="lang-pt">Frigobar</span><span class="lang-en">Mini fridge</span></span>
-      </div>
+      <p class="room-card-floor"><span class="lang-pt">Andar térreo</span><span class="lang-en">Ground floor</span></p>
+      <div class="room-card-cap"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M2 20c0-3.5 3-6 7-6s7 2.5 7 6"/><circle cx="17" cy="9" r="2.4"/><path d="M16 14c2.8.4 5 2.6 5 6"/></svg><span><span class="lang-pt">4 hóspedes</span><span class="lang-en">4 guests</span></span></div>
+      <p class="room-card-beds"><span class="lang-pt">2 camas de casal</span><span class="lang-en">2 double beds</span></p>
     </div>
 
   </div>
@@ -1073,7 +1073,7 @@
 
     <div class="amenity-card">
       <div class="amenity-card-photo">
-        <img src="assets/img/gallery/IMG_7449.jpeg" alt="Lareira externa da Casa Koray">
+        <img src="assets/img/gallery/IMG_7448.jpeg" alt="Lareira externa da Casa Koray">
       </div>
       <div class="amenity-card-body">
         <h3 class="amenity-card-title"><span class="lang-pt">Lareira</span><span class="lang-en">Fireplace</span></h3>
@@ -1109,6 +1109,7 @@
           <li><span class="lang-pt">Churrasqueira a carvão</span><span class="lang-en">Charcoal grill</span></li>
           <li><span class="lang-pt">Cervejeira</span><span class="lang-en">Beer fridge</span></li>
           <li><span class="lang-pt">Máquina de gelo</span><span class="lang-en">Ice maker</span></li>
+          <li><span class="lang-pt">Adega</span><span class="lang-en">Wine cellar</span></li>
         </ul>
       </div>
     </div>
@@ -1163,8 +1164,8 @@
         <p><span class="lang-pt">Check-in a partir das 12h e check-out até as 12h.</span><span class="lang-en">Check-in from 12:00 PM and check-out by 12:00 PM.</span></p>
       </details>
       <details class="faq-item">
-        <summary><span class="lang-pt">Existe taxa de limpeza?</span><span class="lang-en">Is there a cleaning fee?</span></summary>
-        <p><span class="lang-pt">Não há taxa de limpeza.</span><span class="lang-en">There is no cleaning fee.</span></p>
+        <summary><span class="lang-pt">Existem extras além do valor das diárias?</span><span class="lang-en">Are there costs beyond the nightly rate?</span></summary>
+        <p><span class="lang-pt">Sim. O valor da equipe de funcionários (3 a 5 pessoas, com diárias de R$ 270 a R$ 320 dependendo da função), o valor do consumo (água, energia e gás), além de um PIX caução feito antes da entrada na casa — esse valor é devolvido após o abatimento das despesas de consumo e da verificação de possíveis avarias na casa.</span><span class="lang-en">Yes. The cost of household staff (3 to 5 people, at a daily rate of R$ 270 to R$ 320 depending on the role), utility consumption (water, electricity and gas), and a refundable PIX security deposit paid before check-in — this deposit is returned after deducting consumption costs and checking for any damage to the house.</span></p>
       </details>
       <details class="faq-item">
         <summary><span class="lang-pt">A casa aceita animais de estimação?</span><span class="lang-en">Are pets allowed?</span></summary>
@@ -1221,8 +1222,8 @@
     </div>
     <div class="location-foot">
       <p class="location-address">
-        <span class="lang-pt">Condomínio Porto das Baleias · Praia do Forte, Bahia</span>
-        <span class="lang-en">Porto das Baleias · Praia do Forte, Bahia</span>
+        <span class="lang-pt">Praia do Forte, Bahia</span>
+        <span class="lang-en">Praia do Forte, Bahia</span>
       </p>
       <a class="map-link" href="https://maps.app.goo.gl/42TcQjgCMTYgv7oUA?g_st=ic" target="_blank" rel="noopener">
         <span class="lang-pt">Abrir no Google Maps</span><span class="lang-en">Open in Google Maps</span>
@@ -1260,10 +1261,10 @@
     </button>
   </div>
   <p class="wa-bubble">
-    <span class="lang-pt">Olá! 👋 Como posso ajudar com sua reserva?</span>
-    <span class="lang-en">Hi! 👋 How can I help with your booking?</span>
+    <span class="lang-pt">Olá 👋🏻, bem vindo a Casa Koray<br>Diárias a partir de R$12.000<br>Mínimo de 4 diárias<br>Limite de 25 pessoas</span>
+    <span class="lang-en">Hello 👋🏻, welcome to Casa Koray<br>Nightly rates starting at R$12,000<br>4-night minimum stay<br>Capacity: 25 people</span>
   </p>
-  <a class="wa-widget-btn" href="https://wa.me/5571999859929?text=Ol%C3%A1!%20Vi%20o%20site%20da%20Casa%20Koray%20e%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es." target="_blank" rel="noopener">
+  <a class="wa-widget-btn" href="https://wa.me/5571999859929?text=Ol%C3%A1%2C%20vim%20pelo%20site%2C%20gostaria%20de%20saber%20valores%20e%20disponibilidade%20da%20Casa%20Koray" target="_blank" rel="noopener">
     <svg viewBox="0 0 720 720" fill="currentColor" aria-hidden="true"><path d="M360,0C161.18,0,0,161.18,0,360c0,65.41,17.45,126.75,47.94,179.61L0,720l187.02-44.21c51.34,28.18,110.28,44.21,172.98,44.21,198.82,0,360-161.18,360-360S558.82,0,360,0ZM360,655.52c-60.17,0-116.13-17.98-162.82-48.87l-110.49,28.14,30.99-105.61c-33.53-47.93-53.2-106.26-53.2-169.19,0-163.21,132.31-295.52,295.52-295.52s295.52,132.31,295.52,295.52-132.31,295.52-295.52,295.52Z"/><path d="M444.35,407.52l87.1,41.06c4,1.88,6.56,5.94,6.2,10.34-.94,11.46-5.54,34.43-26.13,55.02-58.12,58.12-162.49-7.64-166.74-10.18-25.67-13.79-50.06-32.24-73.19-55.36-23.12-23.12-41.58-47.52-55.37-73.19-2.55-4.24-68.31-108.61-10.18-166.74,20.59-20.59,43.56-25.19,55.02-26.13,4.41-.36,8.46,2.2,10.34,6.2l41.07,87.1c1.94,4.12,1.09,9.02-2.13,12.24l-30.61,30.61c-6.62,6.62-8.56,16.93-4,25.11,11.17,20.03,26.19,39.32,43.59,57.07,17.75,17.4,37.04,32.43,57.07,43.59,8.18,4.56,18.48,2.62,25.11-4l30.61-30.61c3.22-3.22,8.12-4.08,12.24-2.13Z"/></svg>
     <span><span class="lang-pt">Conversar no WhatsApp</span><span class="lang-en">Chat on WhatsApp</span></span>
   </a>
@@ -1372,7 +1373,7 @@
   function startCarouselAutoplay(){
     if(prefersReducedMotion) return;
     stopCarouselAutoplay();
-    carouselTimer = setInterval(function(){ showCarouselSlide(carouselIndex + 1); }, 10000);
+    carouselTimer = setInterval(function(){ showCarouselSlide(carouselIndex + 1); }, 5000);
   }
   function stopCarouselAutoplay(){
     if(carouselTimer){ clearInterval(carouselTimer); carouselTimer = null; }
@@ -1400,7 +1401,7 @@
     {src:'assets/img/gallery/IMG_7447.jpeg', pt:'Piscina de borda infinita', en:'Infinity-edge pool'},
     {src:'assets/img/gallery/IMG_7444.jpeg', pt:'Piscina, vista para o mar', en:'Pool, ocean view'},
     {src:'assets/img/gallery/IMG_7436.jpeg', pt:'A casa ao entardecer', en:'The house at dusk'},
-    {src:'assets/img/gallery/IMG_7449.jpeg', pt:'Lareira externa à beira da piscina', en:'Poolside fire pit'},
+    {src:'assets/img/gallery/IMG_7448.jpeg', pt:'Lareira externa à beira da piscina', en:'Poolside fire pit'},
     {src:'assets/img/gallery/IMG_7431.jpeg', pt:'Casa Koray', en:'Casa Koray'},
     {src:'assets/img/gallery/IMG_7465.jpeg', pt:'Casa Koray', en:'Casa Koray'},
     {src:'assets/img/gallery/IMG_7458.jpeg', pt:'Espaço gourmet, vista para o mar', en:'Gourmet area, ocean view'},
