@@ -107,8 +107,8 @@
 
   /* language toggle */
   .lang-en{display:none;}
-  body.lang-en .lang-pt{display:none;}
-  body.lang-en .lang-en{display:inline;}
+  body.is-en .lang-pt{display:none;}
+  body.is-en .lang-en{display:inline;}
 
   :focus-visible{outline:2px solid var(--teal);outline-offset:3px;}
 
@@ -254,6 +254,7 @@
     display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;
   }
   .about-figure{border-radius:2px;overflow:hidden;aspect-ratio:4/3;}
+  @media (max-width:860px){.about-figure{margin:0 -14px;border-radius:0;}}
   .about-figure img{width:100%;height:100%;object-fit:cover;}
   .about-eyebrow{font-family:var(--serif);font-style:italic;color:var(--teal);font-size:1.05rem;margin:0 0 6px;}
   .about-title{
@@ -666,12 +667,8 @@
       <img src="assets/img/IMG_7441.jpeg" alt="Área externa da Casa Koray com vista para o mar">
     </figure>
     <div class="about-text">
-      <p class="about-eyebrow">
-        <span class="lang-pt">Um refúgio de frente para o mar</span><span class="lang-en">A retreat facing the ocean</span>
-      </p>
       <h2 class="about-title">
-        <span class="lang-pt">o Tivoli</span>
-        <span class="lang-en">Tivoli Beach</span>
+        <span class="lang-pt">Um refúgio de frente para o mar</span><span class="lang-en">A retreat facing the ocean</span>
       </h2>
       <p>
         <span class="lang-pt">A Casa Koray fica de frente para a praia do Tivoli, em Praia do Forte. São 1.400 m² entre piscinas de borda infinita, hidromassagem aquecida, cinema particular e dez suítes — cinco delas voltadas para o mar. Um refúgio pensado para grupos grandes, para dias longos ao sol e noites tranquilas ouvindo o mar.</span>
@@ -1282,7 +1279,7 @@
 
   // language toggle
   function setLang(lang){
-    document.body.classList.toggle('lang-en', lang === 'en');
+    document.body.classList.toggle('is-en', lang === 'en');
     document.documentElement.lang = lang === 'en' ? 'en' : 'pt-BR';
     document.querySelectorAll('.lang-toggle').forEach(function(group){
       group.querySelectorAll('button').forEach(function(btn){
@@ -1468,7 +1465,7 @@
   }
   function updateLightboxCaption(){
     var item = galleryItems[currentIndex];
-    var isEn = document.body.classList.contains('lang-en');
+    var isEn = document.body.classList.contains('is-en');
     lightboxCaption.textContent = isEn ? item.en : item.pt;
   }
 
